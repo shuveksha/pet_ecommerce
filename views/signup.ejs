@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/css/register.css" rel="stylesheet">
+
+  <title>Sign-Up</title>
+
+</head>
+
+<body>
+  <section class="Form my-4 mx-5">
+    <div class="container">
+      <div class="row no-gutters">
+        <div class="col-lg-3 mr-auto">
+          <img src="assets/img/p.png" class="img-fluid " alt="">
+        </div>
+
+        <form  action="/signup" method="post" class="mx-auto">
+          <p class="display-6 colors mb-3 mt-3 ">Create an Account</p>
+          <div class="fw-normal text-muted mb-4">
+            Already have an account? <a href="/login" class=" colors fw-bold text-decoration-none"> Sign in
+              here</a>
+          </div>
+
+
+          <div class="form-row">
+            <div class="col-lg-7">
+              <input type="text" name="name" placeholder="Name" class="form-control my-3 p-3">
+            </div>
+          </div>
+
+
+
+          <div class="form-row ">
+            <div class="col-lg-7">
+              <input type="email" name="email" placeholder="Email-Address" class="form-control my-3 p-3">
+            </div>
+          </div>
+
+
+          <div class="form-row">
+            <div class="col-lg-7">
+              <input type="password" name="password" placeholder="******" class="form-control my-3 p-3">
+
+            </div>
+          </div>
+
+          
+          <div class="form-row">
+            <div class="col-lg-7">
+              <input type="password" placeholder="Confirm Password" name="passwordconfirm" class="form-control my-3 p-3">
+
+            </div>
+          </div>
+      
+
+          <% if(typeof message != "undefined" && message) { %>
+            <p class="alert alert-danger mt-4"><%=message %> </p>
+            <% } %> 
+   
+  
+
+          <div class="form-check d-flex align-item-center">
+
+            <button type="sumbit" class="btn btn-primary bg sumbit_btn my-3">Register User</button>
+
+          
+          </div>
+
+         
+
+        </form>
+      </div>
+    </div>
+
+
+
+  </section>
+
+
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

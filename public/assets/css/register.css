@@ -1,0 +1,40 @@
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    /* background: rgb(219, 226, 226); */
+}
+  .row{
+    /* background: rgb(219, 156, 156); */
+    /* border-radius: 30px; */
+    /* box-shadow: 12px 12px 20px grey; */
+  }
+  .colors{
+    color: #4c3cc2;
+  }
+  .btnl{
+    border: none;
+    outline: none;
+    height: 50px ;
+    width: 100%;
+    background-color: black;
+    color: white;
+    border-radius: 4px;
+    font-weight: bold;
+  }
+  .btnl:hover{
+    background: white;
+    border: 1px solid;
+    color: black;
+  }
+
+  .bg{
+    background-color: #4735ca;
+  }
+  .bg:hover{
+    background-color: #4f43b1;
+  }

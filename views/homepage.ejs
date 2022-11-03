@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- Meta tags for SEO -->
+    <%- include ('./partials/meta.ejs') %>
+   
+    <!-- End meta tags for SEO-->
+    <!-- css  links-->
+    <%- include ('./partials/meta.ejs') %>
+    <%- include ('./partials/css.ejs') %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+
+    <!-- end css links -->
+</head>
+
+<body>
+
+    <!-- Header -->
+    <%- include('./partials/header.ejs') %>
+    <!-- Header end-->
+
+
+
+    <main>
+    <!-- ======= Hero Section ======= -->
+    <section id="hero" class="d-flex align-items-center">
+        <div class="container text-center position-relative" data-aos="fade-in" data-aos-delay="50">
+          <h1>One Stop for your pet products</h1>
+          <h2>from premium pet food to quality treats,toys,beds and so much more</h2>
+          <% if (user) { %>
+            <form method="get" action="/search" class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2 w-25 pb-2  center d-inline" name ="search_query" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn colorbt my-sm-0" type="submit">Search</button>
+            </form>
+         
+        </div>
+          <!-- <a href="" class="btn-get-started scrollto">search bar here </a> -->
+          <% }  else { %>
+          <a href="/signup" class="btn-get-started scrollto ">sign up</a>
+          <% } %>
+  
+  
+        </div>
+  
+  
+      </section><!-- End Hero -->
+  
+  
+      <main id="main">
+  
+  
+        <!-- ======= About Section ======= -->
+        <section id="about" class="about">
+          <div class="container">
+  
+            <div class="row content">
+              <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
+                <h1 class="display-5" >About Us</h1>
+                <p class="mt-3 fw">At Purr-fect ,we make everything as simple as loving your pet.
+                  <br>
+
+                  Whatever makes your pet happy, you'll find it at Budget Pet Products 
+                  
+                  Purr-fect Pet products is  family-run business comprised of proud pet owners with a vision to make caring for your pet as simple as possible. We believe if we can make the process for pet owners simple, quick and affordable, more people will provide their pets with the care they deserve.
+                  
+                  We understand that owning a pet is not always simple and that getting the best pet care isn’t easy either. That’s why we make everything as simple as what pet ownership is all about. Love.</p>
+              </div>
+              <div class="col-lg-6 pt-4 pt-lg-0" data-aos="fade-left" data-aos-delay="100">
+                <p>
+
+                  Caring for your pet should be fun - not frustrating. With our easy-to-use website all your pet care needs are conveniently available at your fingertips. So, start enjoying more time with your pet and spend less time running around traditional retailers with fewer products and higher prices. If technology is not your thing, or if you are busy and, on the go, we will process your order over the phone - just call our Customer Service Team sunday to Friday 9am - 4pm
+                </p>
+
+
+                <p>
+                  We know our prices are sharp, but there is no need to doubt our products! We guarantee our products are 100% genuine, so you will never be sent an inferior substitute. You can shop with confidence at Purr-fect Pet Products knowing that you are buying only the best for your pet - at the right price!
+
+  
+                </p>
+                <p>
+                  Thanks to over 350,000 customers, Purr-fect Pet Products has established a reputation for affordable, reliable and professional pet care. New to Purr-fect pet products Products? Take a look at our 5 Star Google Trusted Store rating and thousands of reviews to hear from existing customers, the majority of whom purchase from us again and again. If you are one of our many returning customers - thank you! We look forward to fulfilling our promise for fast, affordable and professional pet care!
+
+
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- End About Section -->
+  
+
+           
+        <!-- ======= Dogs Section ======= -->
+  <h3 class="text-center mb-5">Our Product</h3>
+  <div  class="slider">
+    <% image.forEach((item,i)=> { %>
+      <div><img src="/<%=item.pimage%>" class="size m-auto" alt="">
+    </div>
+    <% }) %>
+   
+ 
+  </div>
+<div class="d-flex justify-content-around">
+
+  <a href="/dogproducts" class="display ">View Dog Products</a>
+  <a href="/catproducts" class="display ">View Cat Products</a>
+  <a href="/fishproducts" class="display ">View Fish Products</a>
+</div>
+
+
+<h2 class="text-center mar">Contact Us</h2>
+ <div class="container">
+  <div class="text-center">
+    <p class="fontsize">
+      Om Nagar Tol<br>
+      Kathmandu,Sinamangal<br>
+      <strong>Phone:9811245769<br>
+      <strong>Email:</strong><a href="#">Purr-fect@gmail.com</a><br>
+  </p>
+  </div>
+ </div>
+
+      </main>
+      <!-- End #main -->
+    <%- include('./partials/footer.ejs') %>
+    <!-- End Footer -->
+
+    <!-- All js files -->
+    <%-  include ('./partials/js.ejs') %>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+   <script>
+  
+  $('.slider').slick({
+  dots: true,
+  infinite: false,
+  speed: 300,
+  slidesToShow: 4,
+  slidesToScroll: 4,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        infinite: true,
+        dots: true
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        
+
+      }
+    }
+
+  ]
+});
+	
+   </script>
+    <!-- End js files -->
+
+</body>
+
+</html>    
+    
+
+

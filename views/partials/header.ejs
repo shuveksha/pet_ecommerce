@@ -1,0 +1,43 @@
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center">
+      <div class="container">
+          <div class="header-container d-flex align-items-center justify-content-between">
+              <a href="/">
+                  <div class="logo">
+                      <!-- <h1 class="text-light"><a href="/"><span>Purrfect Store</span></a></h1> -->
+                      <!-- Uncomment below if you prefer to use an image logo -->
+                      <!-- <a href="/"><img src="" alt="" class="img-fluid"></a> -->
+                  </div>
+              </a>
+
+              <nav id="navbar" class="navbar">
+                  <ul>
+                      <li><a class="nav-link active" href="/">Home</a></li>
+                      <li><a class="nav-link " href="/catproducts">Catitems</a></li>
+                      <li><a class="nav-link " href="/dogproducts">Dogitems</a></li>
+                      <li><a class="nav-link" href="/fishproducts">Fishitems</a></li>
+                     
+
+                      <% if (user) { %>
+
+
+                      <li><a class="nav-link" href="/myorders">Myprofile</a></li>
+                      <li><a class="nav-link" href="/cart">Cart</a></li>
+                      <li><a class="getstarted" href="/userlogout">Logout</a></li>
+                      <% }  else { %>
+
+
+                      <!-- <li><a class="nav-link" href="/login" style="margin-right:20px">Login</a></li> -->
+                      <a href="/login" class="back me-1 " style="padding: 7px 20px;color:white;">Login</a>
+
+                      <% } %>
+                      <div class="input-group">
+
+                  </ul>
+                  <i class="bi bi-list mobile-nav-toggle"></i>
+              </nav><!-- .navbar -->
+
+          </div><!-- End Header Container -->
+      </div>
+
+  </header><!-- End Header -->

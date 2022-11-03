@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="/assets/css/adminstyles.css"/>
+</head>
+
+<body>
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar -->
+        <div class="bg-white" id="sidebar-wrapper">
+            <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom"><a
+                    href="/orderdashboard"><img src="/assets/img/logo.png" </a> </div>
+            <div class="list-group list-group-flush my-3">
+                <a href="/orderdashboard"
+                    class="list-group-item list-group-item-action bg-transparent second-text ">Orders</a>
+                <a href="/dogview"
+                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Dogs</a>
+                <a href="/catview"
+                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Cats</a>
+                <a href="/fishview"
+                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Fish</a>
+                <a href="/addproducts"
+                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Add</a>
+                    <a href=/completedorders class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Completed orders</a>     
+
+            </div>
+        </div>
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
+                    <h2 class="fs-2 m-0">PURR-FECT STORE HOUSE
+                    </h2>
+                </div>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown"
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-user me-2"></i>Admin
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                                <li><a class="dropdown-item" href=/logout>Logout </a> </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="container-fluid px-4">
+                <div class="row g-3 my-2">
+                    <div class="col-md-3">
+
+
+                    </div>
+
+
+
+                </div>
+
+                <% if(flashMessages.success) { %>
+                  
+
+                    <div class="alert alert-success" role="alert">
+                        <%=flashMessages.success %>
+                        </div
+                  <% } %>
+
+
+                  
+                <% if(flashMessages.error) { %>
+                  
+
+                    <div class="alert alert-danger" role="alert">
+                        <%= flashMessages.error %>
+                        </div
+                  <% } %>
+
+                
+
+
+
+           
+
+                <div class="container-fluid px-4">
+                    <div class="card  bg-white rounded shadow-sm ">
+                        <div class="card-header">
+                            <h3 class="fs-4 mb-3"> update items</h3>
+                           
+                               
+                        </div>
+                    
+                        <div class="card-body">
+
+                            <% if (message.msg.length > 0) { %>
+                                <p class="alert alert-danger alert-dismissible fade show t " m2-4 mb-2  role='alert' >
+                                    <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="close"></button>
+                                    <strong><%= message.msg  %> </strong>
+                                    </p>
+                             
+                            <% } %>
+
+
+                            <form action="/updateproductpost/<%= result[0].pid %>" method="POST"
+                                enctype="multipart/form-data">
+                                <div class=" mb-3">
+                                    <label for="product_name" class="form-label">Name</label>
+                                    <input type="text" required class="form-control" name="pname"
+                                        placeholder="Enter product Name"value="<%=result[0].pname %>" id="pname" aria-describedby="product_name">
+
+                                </div>
+
+
+
+
+
+                                <div class="mb-3">
+                                    <label for="productPrice" class="form-label">Price</label>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text">Rs.</span>
+                                        <input type="text" required placeholder="Enter product Price"
+                                            class="form-control" id="pprice" value="<%= result[0].pprice %>" name="pprice" aria-label="Price with rs">
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="mb-3">
+                                    <label for="productDescription" class="form-label">Description</label>
+                                    <textarea class="form-control" placeholder="Enter product Description"
+                                         name= "pdiscription" id="pdescription"
+                                        required rows="3"> <%= result[0].pdiscription %></textarea>
+                                </div>
+
+                              <div class="mb-3">         
+                                <% switch (result[0].pcategory) {
+                                    case 'dog' : %>
+                                             
+                                        <select class="form-select form-select-sm"  name="pcategory">
+                                            aria-label=".form-select-sm example" style="width:50%">
+                                            <option selected value="dog">Dog</option>
+                                            <option value="cat">Cat</option>
+                                            <option value="fish">Fish</option>
+    
+                                        </select>
+                                            <% break;
+                                    
+                                    case 'cat' : %>
+                                    <select class="form-select form-select-sm"  name="pcategory"  >
+                                            aria-label=".form-select-sm example" style="width:50%">
+                                            <option  value="dog">Dog </option>
+                                            <option selected value="cat">Cat</option>
+                                            <option value="fish">Fish</option>
+    
+                                        </select>
+                                            <% break;
+                                    
+                                    case 'fish' : %>
+                                    <select class="form-select form-select-sm"  name="pcategory"  >
+                                            aria-label=".form-select-sm example" style="width:50%">
+                                            <option  value="dog">Dog </option>
+                                            <option value="cat">Cat</option>
+                                            <option selected value="fish">Fish</option>
+    
+                                        </select>
+                                            <% break;
+                                    
+                                    } %>
+                                
+                                
+                                
+                                
+                                
+                              
+                                     
+                                   
+
+
+                                 
+                                     
+                                    
+
+                                </div>
+
+                                <div class="row g-3 my-4">
+                                    <div class="col-md-4">
+
+
+                                    </div>
+
+
+
+                                </div>
+
+
+                        </div>
+                        <div class="mb-3">
+
+
+                            <img src="/<%= result[0].pimage %>" width="100 " height="100"
+                                class="img-thumbnail mt-1 mb-3">
+
+
+                        </div>
+                        <input type="hidden" name="old_image" value="<%= result[0].pimage %>"
+                        <div class="mb-3">
+                            <label for="formFileMultiple" class="form-label">Image</label>
+                            <input class="form-control" name="image" type="file"  accept='image/*'
+                                id="formFileMultiple" multiple>
+                        </div>
+
+
+                        <button type="submit" value="upload" class="btn btn-outline-success m-3">Submit</button>
+
+                        </form>
+
+
+
+
+
+
+
+                    </div>
+                </div>
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+    </div>
+
+   
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+        var el = document.getElementById("wrapper");
+        var toggleButton = document.getElementById("menu-toggle");
+
+        toggleButton.onclick = function () {
+            el.classList.toggle("toggled");
+        };
+    </script>
+</body>
+
+</html>

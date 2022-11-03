@@ -1,0 +1,42 @@
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+  .row{
+    background: white;
+    /* border: 2px ridge rgb(197, 192, 226); */
+    /* border-radius: 30px; */
+ 
+  }
+  
+  .center{
+    /* display:block; */
+ margin: auto auto;
+    
+        
+  }
+  .link{
+    color: blue;
+  }
+  .color{
+    color:#5d28ee;
+  }
+  .btn1{
+    border: none;
+    outline: none;
+   
+    padding:5px 20px;
+    background-color: rgb(91, 82, 212);
+   
+    color: white;
+    border-radius: 4px;
+    font-weight: bold;
+  }
+  .btn1:hover{
+    background:#786DE8 ;
+    border: 1px solid;
+    color: rgb(244, 243, 247);
+  }

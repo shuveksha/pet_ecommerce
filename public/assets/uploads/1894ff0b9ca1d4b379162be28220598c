@@ -1,0 +1,311 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.0
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Oct 14, 2022 at 12:09 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 7.4.29
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `purrfectstorehouse`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `id` int(11) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id`, `email`, `password`) VALUES
+(1, 'admin@gmail.com', '1234'),
+(2, 'admin2@gmail.com', '1234');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cart`
+--
+
+CREATE TABLE `cart` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `pid` int(11) NOT NULL,
+  `quantity` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ordered_items`
+--
+
+CREATE TABLE `ordered_items` (
+  `id` int(11) NOT NULL,
+  `user_order_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `ordered_price` int(11) DEFAULT NULL,
+  `ordered_quantity` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `ordered_items`
+--
+
+INSERT INTO `ordered_items` (`id`, `user_order_id`, `product_id`, `ordered_price`, `ordered_quantity`) VALUES
+(1, 1, 2, 3000, 1),
+(2, 1, 9, 200, 1),
+(4, 2, 9, 200, 1),
+(5, 3, 2, 3000, 3),
+(6, 3, 4, 2000, 1),
+(8, 4, 9, 200, 1),
+(9, 5, 14, 650, 1),
+(10, 6, 5, 600, 1),
+(11, 7, 2, 3000, 1),
+(12, 8, 2, 3000, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product`
+--
+
+CREATE TABLE `product` (
+  `pid` int(11) NOT NULL,
+  `pname` varchar(255) NOT NULL,
+  `pprice` float(8,2) UNSIGNED NOT NULL,
+  `pdiscription` varchar(255) NOT NULL,
+  `pimage` varchar(255) NOT NULL,
+  `pcategory` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `product`
+--
+
+INSERT INTO `product` (`pid`, `pname`, `pprice`, `pdiscription`, `pimage`, `pcategory`) VALUES
+(1, 'dog belt', 300.00, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,\r\nmolestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum', '', 'dog'),
+(2, 'dog house', 3000.00, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,\r\nmolestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum', '', 'dog'),
+(3, 'acqarium', 10000.00, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,\r\nmolestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum', '', 'fish'),
+(4, 'cat house', 2000.00, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,\r\nmolestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum', '', 'cat'),
+(5, 'cat chewing set', 600.00, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,\r\nmolestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum', '', 'cat'),
+(6, 'summer dog cloth', 400.00, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,\r\nmolestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum', '', 'dog'),
+(7, 'cat bowl set', 700.00, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,\r\nmolestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum', '', 'cat'),
+(8, 'dog bowl set', 900.00, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,\r\nmolestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum', '', 'dog'),
+(9, ' colorful stones', 200.00, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,\r\nmolestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum', '', 'fish'),
+(10, 'plants', 300.00, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,\r\nmolestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum', '', 'fish'),
+(11, 'pedigree', 500.00, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,\r\nmolestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum', '', 'dog'),
+(12, 'whiskas', 650.00, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,\r\nmolestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum', '', 'cat'),
+(13, 'dog harness', 900.00, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,\r\nmolestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum', '', 'dog'),
+(14, 'cat harness', 650.00, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,\r\nmolestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum', '', 'cat'),
+(15, 'fish food(1kg)', 350.00, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,\r\nmolestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum', '', 'fish');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `shipping_address`
+--
+
+CREATE TABLE `shipping_address` (
+  `id` int(11) NOT NULL,
+  `full_name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `phone` varchar(10) NOT NULL,
+  `street_address` varchar(255) NOT NULL,
+  `city` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `shipping_address`
+--
+
+INSERT INTO `shipping_address` (`id`, `full_name`, `email`, `phone`, `street_address`, `city`) VALUES
+(6, 'Margaret Donaldson', 'bule@mailinator.com', '+1 (894) 4', 'Temporibus quia dign', 'cuxevojecu@mailinator.com'),
+(7, 'Aurelia Talley', 'xygotixomi@mailinator.com', '+1 (445) 2', 'Enim illum dolor ul', 'zavuzyvuw@mailinator.com'),
+(8, 'Sigourney Figueroa', 'wezybuf@mailinator.com', '+1 (271) 7', 'Libero perferendis q', 'lixa@mailinator.com'),
+(9, 'Kitra Chandler', 'wulyzyhy@mailinator.com', '+1 (236) 6', 'Occaecat rerum dicta', 'gabuzetip@mailinator.com'),
+(10, 'Hector Leblanc', 'wyxepujor@mailinator.com', '+1 (652) 8', 'Eiusmod deleniti con', 'gumibagiw@mailinator.com'),
+(11, 'Lawrence Beck', 'lohe@mailinator.com', '+1 (357) 4', 'Molestias esse dolor', 'naja@mailinator.com'),
+(12, 'ipsha ghimire', 'ipshatest@gmail.com', '12347900', 'ktm', 'ktm'),
+(13, 'Ivan Alvarado', 'jokadases@mailinator.com', '+1 (207) 2', 'Nulla culpa aute at', 'belyle@mailinator.com'),
+(14, 'Gabriel Hendrix', 'xyqawowox@mailinator.com', '+1 (489) 8', 'Ipsa ex porro harum', 'fanapix@mailinator.com'),
+(15, 'Blaine Sexton', 'tuladowuju@mailinator.com', '+1 (696) 7', 'Commodi sit ut volu', 'lajepovid@mailinator.com'),
+(16, 'Kyra Goodman', 'myci@mailinator.com', '+1 (691) 4', 'Quia in deserunt eum', 'zaha@mailinator.com'),
+(17, 'Emma Keller', 'decikirys@mailinator.com', '+1 (703) 9', 'Accusantium doloremq', 'ligubirewe@mailinator.com'),
+(18, 'Justine George', 'kyfu@mailinator.com', '+1 (148) 5', 'Sed quis non aliquid', 'cazurur@mailinator.com'),
+(19, 'Daryl Hunt', 'vygit@mailinator.com', '+1 (413) 4', 'Tempor fuga Enim ar', 'nojena@mailinator.com');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `user_id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `user_password` varchar(255) NOT NULL,
+  `user_email` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`user_id`, `name`, `user_password`, `user_email`) VALUES
+(1, 'ipsha', '$2a$08$3Y315ioCN7MNqRDuCvzmxuE/s6vKVj5K6CT6CUu/yh9ev5pn6VPLO', 'ipsha@gmail.com'),
+(2, 'tulsi', '$2a$08$6TERci2gSIYu1JDQLnQ9luC9sSqbk.5g9o9yElTUL4vFaOH9f/d5u', 'tulsi@gmail.com'),
+(3, 'barsa', '$2a$08$Z6yLChszjMkRX3L8pwoC8uINm8hp40b1k.Q6sUEQ.0JsOTYfhZ9Oq', 'barsa@gmail.com'),
+(4, 'anisha', '$2a$08$d9SPyhyP8.g8oHlJkGlLl.a2q5jH/pvTHaU.Y9UNIUs4u8B3zgMR.', 'anisha@gmail.com'),
+(5, 'ipshatest', '$2a$08$jlYytuoNzfEYIfCPjUQxHusTdn9hpXc8sbkcBLuwhM0.ds/6nS9Du', 'ipshatest@gmail.com'),
+(6, 'sample', '$2a$08$F7M4zBIsgeT5qy.k6UejtuYhkD7Aof8pBCKK7m.kndyid/C9lQtg6', 'sample@gmail.com');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_order`
+--
+
+CREATE TABLE `user_order` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `shipping_address_id` int(11) NOT NULL,
+  `order_date` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user_order`
+--
+
+INSERT INTO `user_order` (`id`, `user_id`, `shipping_address_id`, `order_date`) VALUES
+(1, 5, 12, '2022-10-14 02:07:01'),
+(2, 5, 13, '2022-10-14 03:23:26'),
+(3, 5, 14, '2022-10-14 06:45:56'),
+(4, 2, 15, '2022-10-14 07:55:44'),
+(5, 3, 16, '2022-10-14 08:23:35'),
+(6, 3, 17, '2022-10-14 08:25:38'),
+(7, 4, 18, '2022-10-14 08:32:19'),
+(8, 1, 19, '2022-10-14 08:35:02');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `pid` (`pid`);
+
+--
+-- Indexes for table `ordered_items`
+--
+ALTER TABLE `ordered_items`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_order_id` (`user_order_id`),
+  ADD KEY `product_id` (`product_id`);
+
+--
+-- Indexes for table `product`
+--
+ALTER TABLE `product`
+  ADD PRIMARY KEY (`pid`);
+
+--
+-- Indexes for table `shipping_address`
+--
+ALTER TABLE `shipping_address`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`user_id`),
+  ADD UNIQUE KEY `user_email` (`user_email`);
+
+--
+-- Indexes for table `user_order`
+--
+ALTER TABLE `user_order`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `shipping_address_id` (`shipping_address_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+
+--
+-- AUTO_INCREMENT for table `ordered_items`
+--
+ALTER TABLE `ordered_items`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `product`
+--
+ALTER TABLE `product`
+  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `shipping_address`
+--
+ALTER TABLE `shipping_address`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `user_order`
+--
+ALTER TABLE `user_order`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `cart`
+--
+ALTER TABLE `cart`
+  ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
+  ADD CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`pid`) REFERENCES `product` (`pid`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

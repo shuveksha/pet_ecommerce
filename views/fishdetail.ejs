@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Shop Homepage - Start Bootstrap Template</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet"/>
+
+    <link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
+    <link href="/assets/css/stylesnext.css" rel="stylesheet" />
+    <link href="/assets/css/style.css" rel="stylesheet">
+    
+</head>
+
+<body>
+    <!-- Navigation-->
+   
+    <header id="header" class="fixed-top d-flex align-items-center">
+        <div class="container">
+            <div class="header-container d-flex align-items-center justify-content-between">
+                <a href="/">
+                    <div class="logo">
+                      
+                    </div>
+                </a>
+  
+                <nav id="navbar" class="navbar">
+                    <ul>
+                        <li><a class="nav-link " href="/">Home</a></li>
+                        <li><a class="nav-link " href="/catproducts">Catitems</a></li>
+                        <li><a class="nav-link" href="/dogproducts">Dogitems</a></li>
+                        <li><a class="nav-link" href="/fishproducts">Fishitems</a></li>
+                    </ul>
+                    <i class="bi bi-list mobile-nav-toggle"></i>
+                </nav><!-- .navbar -->
+  
+            </div><!-- End Header Container -->
+        </div>
+  
+    </header><!-- End Header -->
+
+    <!-- Section-->
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 mt-5 col-9">
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-2 justify-content-center">
+
+                <div class="col mb-4">
+                    <div class="card h-100">
+                        <% result.forEach((item,i)=>{ %> 
+                        <!-- Product image-->
+                        <img class="card-img-top" src="/<%=item.pimage%> " alt="..." />
+                        <!-- Product details-->
+                       
+                        <div class="card-body p-4">
+                            <div class="text-center fw-bolder">
+                                <h5>
+                                    <%=item.pname %> 
+                                </h5>
+                                 Rs<%=item.pprice %> 
+                            </div>
+                        </div>
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/add/cart/<%=item.pid%>">Add to Cart</a>
+                            </div>
+                          
+                        </div>
+                      
+                    </div>
+
+
+                    <% }) %> 
+
+                </div>
+            </div>
+
+        </div>
+        </div>
+
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <p class="display-6" style="color:#7b4bda;">Discription</p>
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit quo officia non perspiciatis
+                        recusandae. Aperiam nulla magnam sit sunt consectetur, earum, voluptas maxime placeat aliquam
+                        nihil dignissimos libero aliquid vel, architecto fuga expedita quod totam obcaecati fugit optio
+                        reiciendis distinctio!
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+     <!-- recomendation --> 
+    
+     <h3 class="recomendation text-left"> Related Products</h3>
+     <div class="container">
+        <div class="slider">
+        <div class="owl-carousel">
+            <% rows.forEach((item,i) => { %>
+            <div class="slider-card">
+                <div class="d-flex  justify-content-center align-items-center mb-4">
+                    <img src="/<%=item.pimage%> " alt="dummyimage1">
+                </div>
+               
+    
+                <div class="card-body ">
+                    <div class="text-center">
+        
+                     <h5 class="fw-bolder"><%=item.pname %> </h5>
+                    
+                     <%=item.pprice %> 
+                    </div>
+                </div>
+            
+                <div class="card-footer pb-4 pt-0 border-top-0 bg-transparent">
+                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/fishproducts/<%=item.pid%>">View Product</a>
+                    </div>
+                </div>
+    
+            </div>
+            <% }) %>
+        </div>
+     </div>
+     </div>
+    
+ 
+     <!-- recomendation close-->
+    <!-- Footer-->
+    <footer id="footer">
+
+        <div class="footer-top">
+            <div class="container ">
+                <div class="row d-flex justify-content-between">
+    
+                    <div class="col-lg-3 col-md-6 footer-contact">
+                        <h3>Purrfect Store</h3>
+                        <p>
+                            Om Nagar Tol<br>
+                            Kathmandu,Sinamangal<br>
+                            <strong>Phone:</strong>9811245769<br>
+                            <strong>Email:</strong><a href="#">Purr-fect@gmail.com</a><br>
+                        </p>
+                    </div>
+    
+                    <div class="col-lg-2 col-md-6 footer-links">
+                        <h4>Useful Links</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="/">Home</a></li>
+                           
+                            <li><i class="bx bx-chevron-right"></i> <a href="/catproducts">Catproducts</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="/dogproducts">Dogproducts</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="/fishproducts">Fishproducts</a></li>
+                        </ul>
+                    </div>
+    
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4 class="text-muted">Cash On delivery</h4>
+                        <ul>
+                            <li class="text-muted">We offer Cash on Delivery with some extra delivery fee. Free Delivery on the purchase of above Rs 3000</li>
+                           
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="/assets/js/owl.carousel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="/assets/js/scripts.js"></script>
+</body>
+
+</html>
