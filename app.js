@@ -367,6 +367,7 @@ let product;
 
 app.post('/forget-password', (req, res, next) => {
   const { email } = req.body;
+  console.log('the email is '+email)
 
   db.query("SELECT * from user where user_email=?", [email], (err, result) => {
     console.log(result);
@@ -388,11 +389,11 @@ app.post('/forget-password', (req, res, next) => {
     const link = `http://localhost:3000/reset-password/${product.user_id}/${token}}`;
 
     // send the link to email// here
-
+   
 
     var mailOptions = {
       from: 'purfect1123@gmail.com',
-      to: 'purfect1123@gmail.com',
+      to: payload.email,
       subject: 'Password reset link',
       text: link
     };
@@ -516,8 +517,8 @@ app.post('/cart/order', authcontroller.isLoggedIn, function (req, res) {
   }
 
 
-  // Grab the user information from login session
-  // let userId = req.session.userId;
+  // Grab the user information from login 
+  // 
   let userId = req.user.user_id;
 
   // To process the order, capture the shipping details from the req.body 
@@ -796,6 +797,8 @@ app.get('/payment/:id',authcontroller.isLoggedIn,(req,res)=>{
       result:result,
       orderId:orderId,
       totalPrice:totalPrice
+
+
      });
 })
 })

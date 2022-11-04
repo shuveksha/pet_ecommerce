@@ -29,6 +29,7 @@ exports.login = async (req, res) => {
         }
         con.query('select * from user where user_email=?', [email], async (error, results) => {
             console.log(`the result is ${results}`);
+            
             //  checking if no result comes or password for that email is incorrect
             if (!results || !(await bcrypt.compare(password, results[0].user_password))){
                 return res.status(401).render('login', {

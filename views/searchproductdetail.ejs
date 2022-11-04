@@ -56,7 +56,7 @@
                     <div class="card h-100">
                         <% result.forEach((item,i)=>{ %> 
                         <!-- Product image-->
-                        <img class="card-img-top" src="/<%=item.pimage%> " alt="..." />
+                        <img class="card-img-top " style= "width: 50%;height: 50%;margin: auto;" src="/<%=item.pimage%> " alt="..." /
                         <!-- Product details-->
                        
                         <div class="card-body pt-4">
@@ -77,8 +77,7 @@
                     </div>
 
 
-                    <% }) %> 
-
+                 
                 </div>
             </div>
 
@@ -96,13 +95,11 @@
                 <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
                     data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit quo officia non perspiciatis
-                        recusandae. Aperiam nulla magnam sit sunt consectetur, earum, voluptas maxime placeat aliquam
-                        nihil dignissimos libero aliquid vel, architecto fuga expedita quod totam obcaecati fugit optio
-                        reiciendis distinctio!
+                       <%= item.pdiscription %> 
                     </div>
                 </div>
             </div>
+            <% }) %> 
 
         </div>
     </section>

@@ -35,7 +35,7 @@ module.exports = function (app, passport) {
 	// process the login form
 	app.post('/admin', passport.authenticate('local-login', {
 		successRedirect: '/orderdashboard', // redirect to the secure profile section
-		failureRedirect: '/admin', // redirect back to the signup page if there is an error
+		failureRedirect: '/admin', // redirect back to the sigin page if there is an error
 
 	}),
 		function (req, res) {
