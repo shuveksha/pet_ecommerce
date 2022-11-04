@@ -49,8 +49,9 @@ catrouter.route('/:id').get((req, res) => {
     console.log('the name is ',finalname);
 
 
-    let similar = "select * from product where pname like ?";
-    con.query(similar, [finalname+ '%'], function (err, rows) {
+  let similar = "select * from product where pname like ? and pcategory='cat'";
+    con.query(similar, ['%'+finalname+ '%'], function (err, rows) {
+      console.log('the similar is',rows);
       console.log('the similar is',rows);
       console.log('the res is',result);
       

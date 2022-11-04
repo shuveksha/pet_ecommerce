@@ -69,16 +69,19 @@
     </div>
 
 </header>
-  <h3 class="container w-25  m mb-2 margininline">Your Total amount is Rs:</h3>
-  <% result.forEach(item => { %>
-    <input type="number" id="amount" class="container w-25 marginblock border-0 text-center font" readonly value="<%= item.subtotal %>"> 
- 
-    <% }) %>
 
+  <h3 class="container w-25  m mb-2 margininline">Your Total amount is Rs:</h3>
+  
+  
+    <input type="number" id="amount" class="container w-25 marginblock border-0 text-center font" readonly value="<%= totalPrice %>"> 
+ 
+   
+    <h3 class="container w-25  m mb-2 margininline" style="margin-top:20px ;">Pay with paypal</h3>
   <div  class ="container margininline ma" id="paypal">
 
   </div>
-  <h5 class="container m mb-2 margininline">Skip this step for cash on delivery and view your details</h5>
+  <h3 class="container w-25  m mb-2 margininline" style="margin-top: 20px;">Or</h3>
+  <h5 class="container m mb-2 margininline" style="margin-top: 20px;">Skip this step for cash on delivery and view your details</h5>
   <a href="/order/detail/<%=orderId%>" class="container margininline " style="color:blueviolet;margin-top:50px;text-decoration: underline;"> <h4 class="hoverclass ">View your order here </h4></a>
   
 </body>

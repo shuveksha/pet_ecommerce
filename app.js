@@ -79,11 +79,10 @@ const upload = multer({ dest: 'public/assets/uploads/' });
 
 // configure flash 
 // This configuration make flash messages available inside all ejs templates
-// req.flash("success", "hello world")
-// req.flash("error", "error occoured")
+
 // To access success and error variables in ejs just use
 // <%= flashMessages.success %>
-// ,%= flashMessages.error %>
+// %= flashMessages.error %>
 app.use(function(req, res, next){
   res.locals.flashMessages = req.flash();  
   next();
@@ -220,102 +219,7 @@ app.post("/addproducts", upload.single('image'), (req, res) => {
 
 
 
-//update products by admin 
 
-
-
-// app.post("/updateproductpost/:id", upload.single('image'), (req, res) => {
-
-//   console.log(req.body);
-
-
-//   const pname = req.body.pname;//get pname from form
-//   const pcategory = req.body.pcategory;//get category from form 
-//   const pprice = req.body.pprice;//get price from form
-//   const pdiscription = req.body.pdiscription;//get description from form
-
-//   let rows;
-//   console.log(req.params.id);
-//   getData = 'SELECT * FROM product WHERE pid=?';
-//   db.query(getData, [req.params.id], (err, result) => {
-
-//     rows = result;
-
-//     if (err) {
-//       console.log(err);
-//       return;
-//     }
-
-//     if (!pname || !pcategory || !pprice || !pdiscription) {
-//       console.log('name' + pname);
-//       console.log('categoty' + pcategory);
-//       console.log('price' + pprice);
-//       console.log('pdiscription' + pdiscription);
-
-//       message = {
-//         msg: "please enter all  fields",
-//         type: "alert"
-//       }
-
-//       return res.status(400).render('adminupdate_page', {
-//         result: rows,
-//         message: message
-//       });
-
-//     } else if (isNaN(pprice)) {
-
-//       message = {
-//         msg: "please enter valid number",
-//         type: "alert"
-//       }
-
-
-//       return res.status(400).render('adminupdate_page', {
-//         message: message,
-//         result: rows
-
-//       });
-
-//     } else {
-//       let sqlUpdateQuery = '';
-//       let update_query_column = '';
-//       if (!req.file) {
-//         sqlUpdateQuery = "UPDATE  product SET pname=?,pprice=?,pdiscription=?,pcategory=? WHERE pid=? ";
-//         update_query_column = [pname, pprice, pdiscription, pcategory, req.params.id]
-
-
-//       } else {
-//         const db_image_path = 'assets/uploads/' + req.file.filename;
-//         sqlUpdateQuery = "UPDATE  product SET pimage=?,pname=?,pprice=?,pdiscription=?,pcategory=? WHERE pid=? ";
-//         update_query_column = [db_image_path, pname, pprice, pdiscription, pcategory, req.params.id]
-
-//       }
-
-
-
-//       message = {
-//         msg: "product added sucessfuly!!",
-//         type: "success"
-//       }
-
-//       db.query(sqlUpdateQuery, update_query_column, (err, result) => {
-//         if (err){
-//           console.log(err);
-//           return res.send('Error occoured while running update query')
-//         }
-
-//         if(result) {
-//           return res.send("successful updating " )
-//         }
-          
-
-//       });
-//     }
-
-//   });
-
-// });
-// *****
 //update products by admin 
 
 
@@ -712,6 +616,7 @@ app.post('/cart/order', authcontroller.isLoggedIn, function (req, res) {
 
               db.query("delete from cart where user_id=?", [req.user.user_id], function (err, result) {
                 if (!err) {
+
                   return res.redirect('/payment/'+orderId);
                 }
 
@@ -872,15 +777,25 @@ app.get('/order/detail/:orderId', authcontroller.isLoggedIn,(req, res)=>
 
 
 app.get('/payment/:id',authcontroller.isLoggedIn,(req,res)=>{
-
+  let totalPrice=0;
   let orderId=req.params.id;
   let paymentprice = "select product.pname, ordered_price, ordered_quantity, (ordered_quantity * ordered_price) as subtotal from ordered_items inner join user_order on ordered_items.user_order_id=user_order.id inner join product on ordered_items.product_id=product.pid where user_order.user_id =? and user_order.id =?";
+  
   db.query(paymentprice, [req.user.user_id,orderId],function(err,result){
+
     console.log(result);
+
+    let totalPrice = 0;
+                        result.forEach(item => {
+                            totalPrice += item.subtotal;
+
+                        })
+
      res.render('payment',{
     
       result:result,
-      orderId:orderId
+      orderId:orderId,
+      totalPrice:totalPrice
      });
 })
 })

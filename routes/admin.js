@@ -81,11 +81,18 @@ app.get('/completedorders', isLoggedIn, (req, res) => {
 
 	//same as pending order one but replace wiith completed
 	let sqlQuery ="SELECT user_order.*, ordered_items.*, user.* FROM user_order INNER JOIN ordered_items USING (id) INNER JOIN user USING (user_id) WHERE order_status LIKE 'c%d';" 
-	
+	var message = {
+		msg: ""
+		
+	  }
 	let query = con.query(sqlQuery, (err, rows) => {
 		if (err) throw err;
 		res.render('completed_orders', {
-			result: rows
+			result: rows,
+			message:message
+
+
+
 
 		});
 	});
@@ -97,7 +104,7 @@ app.get('/completedorders', isLoggedIn, (req, res) => {
 app.get('/orderdetails/:id', function (req, res) {
 
     
-    let orderId = req.params.id || "";//it request order it from url and the order id is passed from ejs 
+    let orderId = req.params.id || "";// request order id from url and the order id is passed from ejs 
 
     if (!orderId) {
         res.send("Invalid order id");
@@ -148,7 +155,7 @@ app.get('/orderdetails/:id', function (req, res) {
                         }
 						
 						
-						//subtotal and quanitu can have more than one subtotal and quantity for each items 
+						//subtotal and quanity can have more than one subtotal and quantity for each items 
                         // calculate total quantity and total price of each items
 					
                         let totalPrice = 0;
@@ -297,15 +304,21 @@ app.get('/completedorderdetails/:id', function (req, res) {
 
 });
 
-
 //changing order status
 app.post('/updatestatus/:id', (req, res) => {
 	let sqlQuery = "update user_order set order_status=? where id=?";//updating user_order table whose orderstatus with is id
 	let data = ['completed',req.params.id];//passing data
+	var message = {
+		msg: "order sucessfully processed"
+		
+	  }
 	let query = con.query(sqlQuery,data, (err, rows) => {
 		if (err) throw err;
 		
-		res.send('order sucessfully procedded ')
+		res.render('status_changed',{
+			message:message
+
+		})
 		});
 });
 

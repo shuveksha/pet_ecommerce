@@ -18,7 +18,7 @@
         <div class="bg-white" id="sidebar-wrapper">
             <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom"><a href="/orderdashboard"><img src="assets/img/logo.png"</a></div>
             <div class="list-group list-group-flush my-3">
-                <a href=/orderdashboard class="list-group-item list-group-item-action bg-transparent second-text active">Orders</a>
+                <a href=/orderdashboard class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Orders</a>
                 <a href=/dogview class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Dogs</a>
                 <a href=/catview class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Cats</a>                      
                 <a href=/fishview class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Fish</a>
@@ -60,14 +60,22 @@
 
             <div class="container-fluid px-4">
                 <div class="row g-3 my-2">
+                    <% if (message.msg.length > 0) { %>
+                        <p class="alert alert-<%= message.type %>  alert-dismissible fade show t " m2-4 mb-2  role='alert' >
+                            <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="close"></button>
+                            <strong><%= message.msg  %> </strong>
+                            </p>
+                     
+                    <% } %>
+                    
                     <div class="col-md-3">
-                        
-            
+                       
                     </div>
 
-            
+        
                 
                 </div>
+               
 
                 <div class="row my-5">
                     <h3 class="fs-4 mb-3">pending Orders</h3>
