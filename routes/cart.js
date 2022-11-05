@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');  //password encryption
  const cookieParser= require('cookie-parser');
 const authcontroller = require('../controllers/auth')
- const { promisify } = require('util');
+//  const { promisify } = require('util');
 
 const dotenv= require('dotenv');
 dotenv.config({path:'./.env'});
@@ -27,11 +27,8 @@ const con = mysql.createConnection({
 
 cartrouter.route('/').get(authcontroller.isLoggedIn, (req, res) => {
 
-    if (!req.user) {
-
-        res.redirect('/');  
-
-    }
+   
+    if(req.user){
     
     let sql = "select product.pname, product.pprice,cart.quantity,cart.pid,cart.quantity*product.pprice as sub_total from cart inner join product on cart.pid=product.pid where cart.user_id=?";
    
@@ -51,7 +48,7 @@ cartrouter.route('/').get(authcontroller.isLoggedIn, (req, res) => {
 
         if (result.length >=0) {
             total_item = result.length;
-            cart_message = `You have  ${total_item} item in your cart`;
+            cart_message =` You have  ${total_item} item in your cart;`
 
             let total_quantity = 0;
             let total_price = 0
@@ -73,7 +70,13 @@ cartrouter.route('/').get(authcontroller.isLoggedIn, (req, res) => {
 
 
 
+
+}
+else{
+    res.redirect('/')
+}
 })
+
 
 cartrouter.route('/').post((req,res)=>{
 
@@ -126,17 +129,4 @@ module.exports= cartrouter;
 
 
 
-// *********
-
-
-
-
-
-
-  
-   
-
-
-// con.query("SELECT * from product where pid='?'",[id],(err,result)=>{
-//   res.render('cart',{
-//     result:result })
+// *******

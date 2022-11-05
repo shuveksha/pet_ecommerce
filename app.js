@@ -351,13 +351,12 @@ app.use('/add/cart', cartaddrouter);
 const { publicDecrypt } = require('crypto');
 const { type } = require('os');
 const { search } = require('./routes/catroutes');
-
-
-
-//ipsha
+const { Console } = require('console');
 
 let payload;
 // forget and reset password routes
+
+
 
 app.get('/forget-password', (req, res, next) => {
   res.render('forget-password');
@@ -389,10 +388,10 @@ app.post('/forget-password', (req, res, next) => {
     const link = `http://localhost:3000/reset-password/${product.user_id}/${token}}`;
 
     // send the link to email// here
-   
+ 
 
     var mailOptions = {
-      from: 'purfect1123@gmail.com',
+      from: 'pfect8524@gmail.com',
       to: payload.email,
       subject: 'Password reset link',
       text: link
@@ -401,8 +400,8 @@ app.post('/forget-password', (req, res, next) => {
     let transport = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: 'purfect1123@gmail.com',
-        pass: "cbkqzdsluwcqvmdq"
+        user: 'pfect8524@gmail.com',
+        pass: "juixfiegyezouxvt"
       },
       port: 3000,
       host: 'smtp.gmail.com'
@@ -420,12 +419,13 @@ app.post('/forget-password', (req, res, next) => {
       }
     })
 
-    res.send('password reset link sent to email...');
+    res.send('<h1 style="margin:50px; color:purple;text-align:center;"> password reset link sent to email...please check you email<h1>');
     console.log(link);
   });
 
 
 })
+
 
 app.get('/reset-password/:id/:token', (req, res, next) => {
 
@@ -452,6 +452,9 @@ app.get('/reset-password/:id/:token', (req, res, next) => {
   }
 
 })
+
+
+
 
 app.post('/reset-password/:id/:token', async (req, res, next) => {
   const { id, token } = req.params;
@@ -492,7 +495,8 @@ app.post('/reset-password/:id/:token', async (req, res, next) => {
         }
 
       })
-      res.send('successful');
+      
+      res.send('<h1 style="margin:50px; color:purple;text-align:center;">Your password has been reset <a href="/login">click here to login</a><h1>');
     })
   }
 
